@@ -1,0 +1,38 @@
+
+spring:
+  application:
+    name: acceptance-test-demo
+  main:
+    banner-mode: "off"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: acceptance-test-demo-handling-0
+      enable-auto-commit: true
+      auto-offset-reset: latest
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    visibility:
+      FIELD: any
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_empty
+  h2:
+    console:
+      enabled: true
+      path: /console
+  datasource:
+    url: jdbc:h2:mem:acceptance-test-demo-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+      use-new-id-generator-mappings: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true

@@ -1,0 +1,17 @@
+spring:
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+    client-id: ${random.uuid}-submission-management-projection-sidecar-test-client
+    consumer:
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      client-id: ${random.uuid}-test-submission-management-projection-sidecar-handler
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: de.interhyp.submissionmanagement
+    properties:
+      security:
+        protocol: PLAINTEXT
+

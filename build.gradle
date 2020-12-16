@@ -1,0 +1,73 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'idea'
+}
+
+group = 'de.interhyp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	set('springCloudVersion', "2020.0.0-RC1")
+	set('cucumberVersion', "6.9.1")
+	set('awaitilityVersion', "4.0.3")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+	testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+	testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+	testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+sourceSets {
+
+	acceptance {
+		java.srcDir "src/acceptance/java"
+		resources.srcDir "src/acceptance/resources"
+		compileClasspath += sourceSets.test.runtimeClasspath
+		runtimeClasspath += sourceSets.acceptance.compileClasspath
+	}
+}
+
+task acceptanceTest(type: Test) {
+	description = "Runs the acceptance tests definied via Cucumber"
+	group = "testing"
+	include "**/AcceptanceTests*"
+
+	testClassesDirs = sourceSets.acceptance.output.classesDirs
+	classpath = sourceSets.acceptance.runtimeClasspath
+	ignoreFailures = false
+}
