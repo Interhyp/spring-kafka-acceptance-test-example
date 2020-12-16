@@ -1,12 +1,12 @@
-package de.interhyp.acceptancetestdemo.steps;
+package de.interhyp.acceptancetest.example.steps;
 
-import de.interhyp.acceptancetestdemo.config.SpringAcceptanceTest;
-import de.interhyp.acceptancetestdemo.entity.User;
-import de.interhyp.acceptancetestdemo.library.AwaitilityHelper;
-import de.interhyp.acceptancetestdemo.library.KafkaTestConsumerUtil;
-import de.interhyp.acceptancetestdemo.library.kafka.UserConsumer;
-import de.interhyp.acceptancetestdemo.library.rest.TestRestClient;
-import de.interhyp.acceptancetestdemo.repository.UserRepository;
+import de.interhyp.acceptancetest.example.config.SpringAcceptanceTest;
+import de.interhyp.acceptancetest.example.entity.User;
+import de.interhyp.acceptancetest.example.library.AwaitilityHelper;
+import de.interhyp.acceptancetest.example.library.KafkaTestConsumerUtil;
+import de.interhyp.acceptancetest.example.library.kafka.UserConsumer;
+import de.interhyp.acceptancetest.example.library.rest.TestRestClient;
+import de.interhyp.acceptancetest.example.repository.UserRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,10 +14,8 @@ import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static de.interhyp.acceptancetestdemo.library.kafka.UserConsumer.USER_TOPIC;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 public class UserSteps extends SpringAcceptanceTest {
 
     @Autowired
@@ -51,7 +49,7 @@ public class UserSteps extends SpringAcceptanceTest {
     @Then("The user with id={string} and name {string} should be written on the topic")
     public void theUserWithIdAndNameShouldBeWrittenOnTheTopic(String id, String name) {
         final Consumer<String, User> consumer = this.userConsumer.getUserConsumer();
-        final ConsumerRecord<String, User> record = KafkaTestConsumerUtil.consume(id, consumer, USER_TOPIC);
+        final ConsumerRecord<String, User> record = KafkaTestConsumerUtil.consume(id, consumer, UserConsumer.USER_TOPIC);
 
         assertThat(record).isNotNull();
         User user = record.value();

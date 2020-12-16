@@ -1,10 +1,10 @@
-package de.interhyp.acceptancetestdemo;
+package de.interhyp.acceptancetest.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AcceptanceTestDemoApplicationTests {
+class AcceptanceTestExampleApplicationTests {
 
 	@Test
 	void contextLoads() {

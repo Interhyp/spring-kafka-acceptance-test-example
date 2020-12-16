@@ -1,8 +1,8 @@
-package de.interhyp.acceptancetestdemo.library.kafka;
+package de.interhyp.acceptancetest.example.library.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.interhyp.acceptancetestdemo.entity.User;
-import de.interhyp.acceptancetestdemo.library.KafkaTestConsumerUtil;
+import de.interhyp.acceptancetest.example.entity.User;
+import de.interhyp.acceptancetest.example.library.KafkaTestConsumerUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -13,7 +13,7 @@ import org.springframework.kafka.test.EmbeddedKafkaBroker;
 
 public class UserConsumer {
 
-    public static final String USER_TOPIC = "user-demo-topic";
+    public static final String USER_TOPIC = "user-example-topic";
 
     @Autowired
     private EmbeddedKafkaBroker embeddedKafkaBroker;

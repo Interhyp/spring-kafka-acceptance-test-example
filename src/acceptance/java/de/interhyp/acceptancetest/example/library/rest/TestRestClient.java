@@ -1,6 +1,6 @@
-package de.interhyp.acceptancetestdemo.library.rest;
+package de.interhyp.acceptancetest.example.library.rest;
 
-import de.interhyp.acceptancetestdemo.entity.User;
+import de.interhyp.acceptancetest.example.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -21,10 +21,10 @@ public class TestRestClient {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    public ResponseEntity<Void> saveUser(User user) {
+    public void saveUser(User user) {
         HttpHeaders headers = new HttpHeaders();
         final HttpEntity<User> entity = new HttpEntity<>(user, headers);
-        return restTemplate.exchange(POST_USER, HttpMethod.POST, entity, Void.class);
+        restTemplate.exchange(POST_USER, HttpMethod.POST, entity, Void.class);
     }
 
     public ResponseEntity<User> getUser(String id) {

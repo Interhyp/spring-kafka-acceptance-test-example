@@ -1,8 +1,8 @@
-package de.interhyp.acceptancetestdemo.controller;
+package de.interhyp.acceptancetest.example.controller;
 
-import de.interhyp.acceptancetestdemo.entity.User;
-import de.interhyp.acceptancetestdemo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.interhyp.acceptancetest.example.entity.User;
+import de.interhyp.acceptancetest.example.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -15,17 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-import java.util.UUID;
 
-import static de.interhyp.acceptancetestdemo.listener.UserListener.USER_TOPIC;
+import static de.interhyp.acceptancetest.example.listener.UserListener.USER_TOPIC;
 
 @RestController
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    @Autowired
-    private UserRepository userRepository;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final UserRepository userRepository;
 
     @RequestMapping(
         value = {"/api/user"},

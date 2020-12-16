@@ -1,4 +1,4 @@
-package de.interhyp.acceptancetestdemo.library;
+package de.interhyp.acceptancetest.example.library;
 
 import java.time.Duration;
 import java.util.concurrent.Callable;

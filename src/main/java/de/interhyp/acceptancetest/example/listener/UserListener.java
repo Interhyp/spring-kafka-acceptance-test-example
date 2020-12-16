@@ -1,7 +1,7 @@
-package de.interhyp.acceptancetestdemo.listener;
+package de.interhyp.acceptancetest.example.listener;
 
-import de.interhyp.acceptancetestdemo.entity.User;
-import de.interhyp.acceptancetestdemo.repository.UserRepository;
+import de.interhyp.acceptancetest.example.entity.User;
+import de.interhyp.acceptancetest.example.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserListener {
 
-    public static final String USER_TOPIC = "user-demo-topic";
+    public static final String USER_TOPIC = "user-example-topic";
+
     private final UserRepository userRepository;
 
     @KafkaListener(topics = USER_TOPIC, containerFactory = "userKafkaListenerContainerFactory")

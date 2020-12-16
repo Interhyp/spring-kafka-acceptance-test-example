@@ -1,13 +1,13 @@
 
 spring:
   application:
-    name: acceptance-test-demo
+    name: spring-kafka-acceptance-test-example
   main:
     banner-mode: "off"
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: acceptance-test-demo-handling-0
+      group-id: spring-kafka-acceptance-test-example-consumer
       enable-auto-commit: true
       auto-offset-reset: latest
   jackson:
@@ -23,7 +23,7 @@ spring:
       enabled: true
       path: /console
   datasource:
-    url: jdbc:h2:mem:acceptance-test-demo-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:spring-kafka-acceptance-test-example-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: sa
     driverClassName: org.h2.Driver

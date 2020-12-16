@@ -1,4 +1,4 @@
-package de.interhyp.acceptancetestdemo.library;
+package de.interhyp.acceptancetest.example.library;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
