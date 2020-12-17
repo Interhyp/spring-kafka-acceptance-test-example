@@ -1,4 +1,4 @@
-#Example application for acceptance tests with Spring, Kafka and Cucumber
+# Example application for acceptance tests with Spring, Kafka and Cucumber
 This is an example application accompanying this [blog post](https://digital.interhyp.de/) about Best Practices for acceptance tests with Cucumber
 
 ## Setup
